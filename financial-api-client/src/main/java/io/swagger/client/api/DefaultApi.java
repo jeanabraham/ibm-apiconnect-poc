@@ -41,6 +41,9 @@ public class DefaultApi {
 
     public DefaultApi() {
         this(Configuration.getDefaultApiClient());
+        apiClient.setBasePath("https://api.us.apiconnect.ibmcloud.com/jeanabrahamibmcom-sandbox/sb/v1/financial");
+        apiClient.addDefaultHeader("x-ibm-client-id", "f1fba292-c9d5-4dfb-94ee-bf47166d44ae");
+        apiClient.addDefaultHeader("x-ibm-client-secret", "S3jG1nL7nQ8qG8eG4fG4uL8sQ5yY2iB2rF3vS3rN7aJ8fB2iT4");
     }
 
     public DefaultApi(ApiClient apiClient) {

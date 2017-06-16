@@ -15,24 +15,32 @@ This POC largely focuses on the API Developer and Application Developer.
 
 #### API Developer
 
-Option#1: Using API Designer (On Bluemix)
+Basic API Design and Publish (On Bluemix)
 
-* Create new API Connect service instance from the 'APIs' option. Name it as 'apiconnect-poc'
+* Create new API Connect service instance from the *APIs* option. Name it as 'apiconnect-poc'
 * Click on newly create API Connect Bluemix Service
-* 'Add' a new catalog with name 'poc'
-* Create a new API. Either a brand new API can be created from scratch, or an existing Swagger API Spec (such as Financial.yaml) can be imported. 
-* Create a new Product to contain the API
+* Add a new *Catalog* with name 'poc'
+* Create a new API. A completely new API can be created from scratch, or an existing Swagger API Spec (such as financial.yaml) can be imported
+* Create a new *Product* to contain the *API*
 * Publish the Product
-* Go to 'Settings > Portal' and enable 'IBM Developer Portal' (a new portal URL will be provisioned for developers to access)
+* Go to 'Settings > Portal' and enable 'IBM Developer Portal' (a new portal with public URL will be provisioned for developers to access)
 
-Option#2:  Using Development Toolkit (Local)
+[Advanced - optional] Using Development Toolkit (Local)
 
 See [Toolkit Setup Documentation](https://www.ibm.com/support/knowledgecenter/en/SSFS6T/com.ibm.apic.toolkit.doc/capim_cli_working_with.html)
 
 
 #### Application Developer
 
-Note: If you want to skip the below steps, you can directly use 'financial-api-client' project in this repo.
+* Create a developer account on [API Developer Portal](https://sb-jeanabrahamibmcom-sandbox.developer.us.apiconnect.ibmcloud.com)
+
+* Create a new *Application*
+
+* Explore *API Products* and subscribe 
+
+
+
+**Note**: If you want to skip the below steps, you can directly use 'financial-api-client' project in this repo.
 
 * Create project folder for API client application 
 

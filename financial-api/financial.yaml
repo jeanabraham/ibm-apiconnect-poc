@@ -1,8 +1,7 @@
----
-swagger: "2.0"
+swagger: '2.0'
 info:
   x-ibm-name: financial
-  title: Financial
+  title: financial
   version: 1.0.0
   description: |-
     At a high-level:
@@ -10,46 +9,76 @@ info:
     - To schedule a transfer to execute once at a specific date, use frequency ONCE and set the transferDate to the desired date. Transfer date must be greater than current date and must not exceed a configurable date such as 1 year from the current date.
     - To schedule a recurring transfer, use frequency other than IMMEDIATE or ONCE and specify one of openEnded flag, transferCount or endDate.
 schemes:
-- https
+  - https
+host: $(catalog.host)
 basePath: /v1/financial
 consumes:
-- application/json
+  - application/json
 produces:
-- application/json
+  - application/json
 securityDefinitions:
   clientIdHeader:
     type: apiKey
     in: header
     name: X-IBM-Client-Id
 security:
-- clientIdHeader: []
+  - clientIdHeader: []
 x-ibm-configuration:
   testable: true
   enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - set-variable:
+          title: set-variable
+          actions:
+            - set: test
+              value: tesva
+          version: 1.0.0
+      - map:
+          title: map
+          inputs:
+            input:
+              schema:
+                $ref: '#/definitions/TransferInput'
+              variable: request.body
+              content: application/json
+          outputs:
+            output:
+              schema:
+                $ref: '#/definitions/TransferConfirmation'
+              variable: message.body
+              content: application/json
+          actions:
+            - set: output.confirmationCode
+              from: input.transferCount
+          version: 1.0.0
   phase: realized
+  gateway: datapower-gateway
 paths:
   /transfers:
     post:
       responses:
-        200:
+        '200':
           description: 200 OK
           schema:
             $ref: '#/definitions/TransferConfirmation'
-        400:
+        '400':
           description: '1201: Invalid request parameter'
-        403:
+        '403':
           description: '1101: Invalid session id / User token'
-        500:
+        '500':
           description: '1300: System not available - Corillian'
-        503:
+        '503':
           description: '1001: In Maintenance mode'
       summary: Immediate Transfer
       parameters:
-      - name: transferInput
-        required: true
-        in: body
-        schema:
-          $ref: '#/definitions/TransferInput'
+        - name: transferInput
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/TransferInput'
 definitions:
   TransferConfirmation:
     properties:
@@ -63,41 +92,33 @@ definitions:
         type: integer
         format: int32
       transferDate:
-        properties: []
+        properties: {}
         type: string
-        description: Transfer date - format (yyyy-mm-dd). Required for scheduling
-          future dated transfer
+        description: Transfer date - format (yyyy-mm-dd). Required for scheduling future dated transfer
       frequency:
-        properties: []
+        properties: {}
         type: string
-        description: '[''IMMEDIATE'' or ''ONCE'' or ''WEEKLY'' or ''BIWEEKLY'' or
-          ''TWICEMONTHLY'' or ''FOURWEEKS'' or ''MONTHLY'' or ''BIMONTHLY'' or ''QUARTERLY''
-          or ''SEMIANNUALLY'' or ''ANNUALLY'']: Frequency of the transfer. If frequency
-          is other than ''Immediate'' and ''Once'', one of open ended flag, transfer
-          count or end date must be provided'
+        description: "['IMMEDIATE' or 'ONCE' or 'WEEKLY' or 'BIWEEKLY' or 'TWICEMONTHLY' or 'FOURWEEKS' or 'MONTHLY' or 'BIMONTHLY' or 'QUARTERLY' or 'SEMIANNUALLY' or 'ANNUALLY']: Frequency of the transfer. If frequency is other than 'Immediate' and 'Once', one of open ended flag, transfer count or end date must be provided"
       fromAccountId:
-        properties: []
+        properties: {}
         type: string
         description: Unique account identifier of from account
       toAccountId:
-        properties: []
+        properties: {}
         type: string
         description: Unique account identifer of to account
       amount:
-        properties: []
+        properties: {}
         description: Amount of transfer
         $ref: '#/definitions/Money'
       openEnded:
-        properties: []
+        properties: {}
         type: string
-        description: Flag indicates if the transfer is open ended. If the transfer
-          is not open ended , then either transfer end date or transfer count should
-          be provided
+        description: 'Flag indicates if the transfer is open ended. If the transfer is not open ended , then either transfer end date or transfer count should be provided'
       endDate:
-        properties: []
+        properties: {}
         type: string
-        description: Transfer end date - format (yyyy-mm-dd). It is not required if
-          the transfer is open ended or transfer count is provided
+        description: Transfer end date - format (yyyy-mm-dd). It is not required if the transfer is open ended or transfer count is provided
     additionalProperties: false
     description: Transfer Information
   Money:
@@ -106,15 +127,8 @@ definitions:
         type: string
         description: Dollar Amount
       currency:
-        properties: []
+        properties: {}
         type: string
-        description: '[''USD'' or ''CAD'']: Currency'
+        description: "['USD' or 'CAD']: Currency"
     additionalProperties: false
 tags: []
-x-ibm-endpoints:
-- endpointUrl: https://api.us.apiconnect.ibmcloud.com/jeanabrahamibmcom-sandbox/sb
-  description: Base Gateway API Endpoint
-  type:
-  - production
-  - development
-...

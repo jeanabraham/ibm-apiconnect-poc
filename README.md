@@ -1,6 +1,6 @@
 ## API Connect Proof-of-Concept Setup Instructions
 
-There are 4 stakeholders in the API lifecycle:  ([See Page 22](http://www.redbooks.ibm.com/redpapers/pdfs/redp5349.pdf)):
+There are 4 stakeholders in the API lifecycle:  (See Page 22 [APIConnect Getting Started Guide](https://github.com/jeanabraham/ibm-apiconnect-poc/blob/master/docs/Getting%20Started%20with%20IBM%20API%20Connect.pdf)):
 * API Developer
 * Application Developer
 * API owner/Product Manager
@@ -33,11 +33,8 @@ See [Toolkit Setup Documentation](https://www.ibm.com/support/knowledgecenter/en
 #### Application Developer
 
 * Create a developer account on [API Developer Portal](https://sb-jeanabrahamibmcom-sandbox.developer.us.apiconnect.ibmcloud.com)
-
-* Create a new *Application*
-
-* Explore *API Products* and subscribe 
-
+* Create a new *Application* (Remember to take note *Client ID and Secret*, as it will be used later on when calling the API)
+* Explore *API Products* and subscribe to an API
 
 
 **Note**: If you want to skip the below steps, you can directly use 'financial-api-client' project in this repo.

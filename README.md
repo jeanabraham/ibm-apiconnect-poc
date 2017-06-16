@@ -45,7 +45,7 @@ See [Toolkit Setup Documentation](https://www.ibm.com/support/knowledgecenter/en
 
 `cd financial-api-client`
 
-* Generate Java project from Swagger API Spec using swagger-gen
+* Generate Java project from Swagger API Spec using [swagger-gen](https://github.com/swagger-api/swagger-codegen)
 
 `brew install swagger-codegen`
 

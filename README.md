@@ -1,12 +1,8 @@
 ## API Connect Proof-of-Concept Setup Instructions
 
-There are 4 stakeholders in the API lifecycle:  (See Page 22 [APIConnect Getting Started Guide](https://github.com/jeanabraham/ibm-apiconnect-poc/blob/master/docs/Getting%20Started%20with%20IBM%20API%20Connect.pdf)):
-* API Developer
-* Application Developer
-* API owner/Product Manager
-* API IT Operations
+Refer to [APIConnect Getting Started Guide](https://github.com/jeanabraham/ibm-apiconnect-poc/blob/master/docs/Getting%20Started%20with%20IBM%20API%20Connect.pdf)) for a high-level overview of using API Connect.
 
-This POC largely focuses on the API Developer and Application Developer.
+This POC largely focuses largely on the basic workflows for an API Developer and Application Developer, without going into the more advanced features of the product.
 
 #### Prereq
 

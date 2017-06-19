@@ -57,18 +57,24 @@ See [Toolkit Setup Documentation](https://www.ibm.com/support/knowledgecenter/en
 
 Class: io.swagger.client.api.DefaultApiTest.java
 ~~~~
-TransferInput transferInput = new TransferInput();
-transferInput.setTransferCount(1);
-Money amount = new Money();
-amount.setDollarAmount("2000");
-amount.setCurrency("CAD");
-transferInput.setAmount(amount);
-transferInput.setFromAccountId("233388932");
-transferInput.setToAccountId("928379287");
+@Test
+public void transfersPostTest() throws ApiException {
+    TransferInput transferInput = new TransferInput();
+    transferInput.setTransferCount(98);
+    Money amount = new Money();
+    amount.setDollarAmount("2000");
+    amount.setCurrency("CAD");
+    transferInput.setAmount(amount);
+    transferInput.setFromAccountId("233388932");
+    transferInput.setToAccountId("928379287");
+    
+    
+    TransferConfirmation response = api.transfersPost(transferInput);
+    System.out.print("Transfer complete. Confirmation Code: " + response.getConfirmationCode());
+}
 ~~~~     
 
 3. Update client configuration with URI and Client Authentication parameters:
-
 
 Class: io.swagger.client.api.DefaultApi.java
 ~~~~
